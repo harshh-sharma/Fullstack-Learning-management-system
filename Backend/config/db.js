@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectToDb = async () => {
     try {
-        const connection = await mongoose.connect("mongodb://127.0.0.1:27017/lms");
+        const connection = await mongoose.connect("mongodb://127.0.0.1:27017/learningsystem");
         if(connection){
             console.log(`DB connected successfully`);
         }

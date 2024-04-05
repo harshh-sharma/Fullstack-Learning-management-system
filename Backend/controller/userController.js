@@ -2,12 +2,9 @@ import { User } from "../models/userModel.js"
 import crypto from "crypto";
 import cloudinary from "cloudinary";
 import sendMail from "../utils/sendMail.js";
+import exp from "constants";
+import sendJwtToken from "../utils/sendToken.js";
 
-const cookieOption = {
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    secure: true
-}
 
 const register = async (req, res) => {
     try {
@@ -53,17 +50,7 @@ const register = async (req, res) => {
             await user.save();
             user.password = undefined;
         }
-
-        const token = await user.generateJWT();
-        res.cookie("token", token, cookieOption);
-        if (user) {
-            res.status(200).json({
-                success: true,
-                message: "User is registered successfully",
-                data: user,
-                token
-            })
-        }
+        sendJwtToken("User registered successfully",200,user,res);
     } catch (error) {
         res.status(400).json({
             success: false,
@@ -98,13 +85,7 @@ const login = async (req, res) => {
                 message: "Password is incorrect"
             })
         }
-        const token = await user.generateJWT();
-        res.cookie("token", token, cookieOption);
-        res.status(200).json({
-            success: true,
-            message: "user successfully loggedIn",
-            data: user,
-        })
+        sendJwtToken("User loggedIn successfully",200,user,res);
     } catch (error) {
         res.status(400).json({
             success: false,
@@ -123,12 +104,29 @@ const logout = (req, res) => {
     })
 }
 
-const update = () => {
-
-}
-
-const getUserProfile = () => {
-
+const getUserProfile = async(req,res) => {
+    const {id} = req.user;
+    console.log(req.user);
+    try {
+        const user = await User.findById(_id);
+        // console.log(user);
+        if(!user){
+            return res.status(400).json({
+                success:false,
+                message:"user are not registered"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:"succefully get user profile",
+            data:user
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:error.message
+        })
+    }
 }
 
 const forgotPassword = async (req, res) => {
@@ -295,14 +293,14 @@ const updateUser = async (req, res) => {
 
 }
 
+
 export {
     register,
     login,
     logout,
-    update,
     getUserProfile,
-    forgotPassword,
+    updateUser,
     resetPassword,
     changePassword,
-    updateUser
+    forgotPassword
 }

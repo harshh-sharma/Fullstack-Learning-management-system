@@ -51,13 +51,11 @@ userSchema.methods.correctPassword = async function(password){
     return await bcrypt.compare(password,this.password);
 }
 
-userSchema.methods.generateJWT = async function(){
+userSchema.methods.generateJWTToken = function(){
     return jwt.sign(
         {id:this._id,email:this.email,role:this.role,subscription:this.subscription},
         process.env.JWT_SECRET_KEY,
-        {
-            expiresIn:process.env.JWT_EXPIRES
-        }
+        {expiresIn:process.env.JWT_EXPIRES}
     );
 }
 
