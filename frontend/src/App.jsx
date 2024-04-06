@@ -1,10 +1,12 @@
-import './App.css'
+import './App.css';
+import {Routes} from "react-router-dom";
+import toast from "react-hot-toast"
 
 function App() {
-
+  const notify = toast("Hello")
   return (
    <>
-   <h1 className='bg-black text-white'>Hello</h1>
+     <button onClick={notify}>Click</button>
    </>
   )
 }
