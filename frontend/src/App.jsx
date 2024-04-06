@@ -1,13 +1,13 @@
 import './App.css';
 import {Routes} from "react-router-dom";
 import toast from "react-hot-toast"
+import Footer from './components/Footer';
 
 function App() {
-  const notify = toast("Hello")
-  return (
-   <>
-     <button onClick={notify}>Click</button>
-   </>
+ return (
+  //  <div className='min-h-screen'>
+  //    {/* <Footer/> */}
+  //  </div>
   )
 }
 
