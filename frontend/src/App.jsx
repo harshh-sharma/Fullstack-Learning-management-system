@@ -1,13 +1,15 @@
 import './App.css';
-import {Routes} from "react-router-dom";
+import {Routes,Route} from "react-router-dom";
 import toast from "react-hot-toast"
 import Footer from './components/Footer';
+import HomeLayouts from './Layouts/HomeLayouts';
+import HomePage from './Pages/HomePage';
 
 function App() {
  return (
-  //  <div className='min-h-screen'>
-  //    {/* <Footer/> */}
-  //  </div>
+    <Routes>
+        <Route path="/" element={<HomePage/>}/>
+    </Routes>
   )
 }
 
