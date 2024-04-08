@@ -4,9 +4,12 @@ import {AiFillCloseCircle} from "react-icons/ai";
 import {FiMenu} from "react-icons/fi"
 import Footer from '../components/Footer';
 import {useDispatch,useSelector} from "react-redux";
+import { logout } from '../redux/Slices/authSlice';
+import {useNavigate} from "react-router-dom";
 
 const HomeLayouts = ({children}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // for checking user is logged in or not
     const isUserLoggedIn = useSelector(store => store?.auth?.isLoggedIn);
@@ -15,6 +18,15 @@ const HomeLayouts = ({children}) => {
     // for checking the role of the user
     const userRole = useSelector(store => store?.auth?.role);
     console.log(userRole);
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        const res = dispatch(logout());
+        if(res?.payload?.success){
+            navigate("/");
+        }
+    }
+
 
     const changeWidth = () => {
         const drawerSide = document.getElementsByClassName("drawer-side");
@@ -40,7 +52,7 @@ const HomeLayouts = ({children}) => {
                     <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>All courses</Link></li>
                     <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>Contact us</Link></li>
                 </ul>
-                {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/logout"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Profile</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Singnup</button></Link></div>)}
+                {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/logout"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Profile</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Singnup</button></Link></div>)}
             </div>
         </div>
         {children}
