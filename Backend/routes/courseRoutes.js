@@ -11,7 +11,7 @@ courseRouter.route("/").get(getAllCourses)
 courseRouter.route("/:id").get(isAuthenticated,getAllCourses)
                            .put(isAuthenticated,isAuthorized("ADMIN"),updateCourse)
                            .delete(isAuthenticated,isAuthorized("ADMIN"),deleteCourse)
-                           .post(isAuthenticated,isAuthorized("ADMIN"),upload.single("lecture"),addLecturesByCourseId);
+                           .post(isAuthenticated,isAuthorized("ADMIN"),upload.single("lecture"),createCourse);
 
 courseRouter.route("/:courseId/:lectureId").delete(isAuthenticated,isAuthorized("ADMIN"),deleteLectureByCourseId);
 

@@ -12,11 +12,11 @@ const HomePage = () => {
                         <p className='text-white'>We have a large library of courses taught by very highly skilled and qualified faculties at very affordable price</p>
                         <div className='flex gap-3 space-x-2'>
                             <Link to={"/courses"}>
-                                <button className='bg-white text-[#191970] font-semibold rounded-md px-2 py-1'>Explore Courses</button>
+                                <button className='hover:text-white transition-all ease-in-out duration-300 bg-[#FF6F61] text-[#1a1a67] font-semibold rounded-md px-2 py-1'>Explore Courses</button>
                             </Link>
 
                             <Link>
-                                <button className='bg-white text-[#191970] font-semibold rounded-md px-2 py-1'>Contact us</button>
+                                <button className='hover:text-white transition-all ease-in-out duration-300 bg-[#FF6F61] text-[#191961] font-semibold rounded-md px-3 py-1'>Contact us</button>
                             </Link>
 
                         </div>

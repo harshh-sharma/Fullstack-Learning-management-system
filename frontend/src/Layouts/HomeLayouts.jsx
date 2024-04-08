@@ -42,7 +42,7 @@ const HomeLayouts = ({children}) => {
     }
 
     return (
-     <div className="h-[100vh] flex">
+     <div className="min-h-screen flex">
         <div className='w-[20%] bg-[#ececec] text-[#191970] font-semibold flex py-20 px-7 text-xl h-[96vh] rounded-r-2xl absolute my-5 shadow-lg shadow-white'>
             <div className='w-full'>
                 <ul className='gap-10 text-2xl w-full pt-[2em] h-full '>
@@ -52,7 +52,7 @@ const HomeLayouts = ({children}) => {
                     <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>All courses</Link></li>
                     <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>Contact us</Link></li>
                 </ul>
-                {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/logout"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Profile</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Singnup</button></Link></div>)}
+                {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/profile"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Profile</button></Link><Link to={"/logout"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Singnup</button></Link></div>)}
             </div>
         </div>
         {children}

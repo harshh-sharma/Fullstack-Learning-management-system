@@ -50,15 +50,15 @@ const getCourseById = async(req,res) => {
 
 const createCourse = async (req,res) => {
     try {
-        const {title,description,category,createdBy} = req.body;
-        if(!title || !description ||!category || !createdBy){
+        const {title,description,category,createdBy,startingDate} = req.body;
+        if(!title || !description ||!category || !createdBy || !startingDate){
             return res.status(400).json({
                 success:false,
                 message:"All fields are required"
             })
         }
 
-        const course = await Course.create({title,description,category,createdBy,thumbnail:{
+        const course = await Course.create({title,description,category,startingDate,createdBy,thumbnail:{
             public_id:"dummy",
             secure_url:"dummy"
         }});
