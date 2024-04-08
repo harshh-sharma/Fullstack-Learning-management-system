@@ -10,7 +10,7 @@ const upload = multer({
             cb(null,file.originalname)
         }
         }),
-        fileFilter: (_req,file,cb) => {
+        fileFilter: (_req,file,cb,res) => {
             let ext = path.extname(file.originalname);
             if(ext !== ".jpg" && ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg" && ext !== ".mp4" && ext !== ".webp"){
                 cb(res.status(400).json({
