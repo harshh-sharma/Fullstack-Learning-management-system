@@ -87,7 +87,7 @@ const Signup = () => {
         <HomeLayouts>
             <div className='flex justify-center items-center h-screen w-full bg-[#191970]'>
                 <div className='flex items-center justify-center w-full'>
-                    <form className='flex justify-center items-center flex-col border-2 border-white py-5 px-5 rounded-md w-[400px]'>
+                    <form className='flex justify-center items-center flex-col shadow-lg shadow-[#FF6F61] border-white py-5 px-5 rounded-md w-[400px]'>
 
                         <label htmlFor="image_uploads">
                             {previewImage ? (<img src={previewImage} className='rounded-full w-32 h-32'/>):<BsPersonCircle className='text-[5em] text-white'/>}
@@ -106,7 +106,7 @@ const Signup = () => {
                             <input type="password" id='password' name='password' required placeholder='Enter your password...' className="pr-[9em] pl-2  py-2 rounded-md placeholder:text-[#FF6F61] text-[#FF6F61] placeholder:font-semibold font-semibold" value={signupData.password} onChange={handleUserData} />
                         </div>
                         <button className='w-full px-2 py-1 text-white text-center bg-[#FF6F61] text-lg font-semibold rounded-md mt-4 hover:bg-[#ca4236] mx-20 transition-all ease-in-out duration-300' onClick={handleSubmit}   >Create account</button>
-                        <p className='text-lg text-white'>Already have an account ? <Link to={"/login"} ><span className='text-[#FF6F61] link cursor-pointer font-semibold'>Login</span></Link></p>
+                        <p className='text-lg text-white mt-2 font-serif'>Already have an account ? <Link to={"/login"} ><span className='text-[#FF6F61] link cursor-pointer font-semibold'>Login</span></Link></p>
                     </form>
                 </div>
             </div>

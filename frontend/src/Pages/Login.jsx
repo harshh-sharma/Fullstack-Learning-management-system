@@ -63,7 +63,7 @@ const Login = () => {
     <HomeLayouts>
         <div className='flex justify-center items-center h-screen w-full bg-[#191970]'>
                 <div className='flex items-center justify-center w-full'>
-                    <form className='flex justify-center items-center flex-col border-2 border-white py-5 px-5 rounded-md w-[400px]' noValidate>
+                    <form className='flex justify-center items-center flex-col border-white py-5 px-5 rounded-md w-[400px] h-[350px] shadow-lg shadow-[#FF6F61]' noValidate>
                         <div className='flex flex-col gap-2'>
 
                             <label htmlFor="email" className='text-white text-lg font-semibold font-serif'>Email</label>
@@ -73,7 +73,7 @@ const Login = () => {
                             <input type="password" id='password' name='password' required placeholder='Enter your password...' className="pr-[9em] pl-2  py-2 rounded-md placeholder:text-[#FF6F61] text-[#FF6F61] placeholder:font-semibold font-semibold" value={loginData.password} onChange={handleUserData} />
                         </div>
                         <button className='w-full px-2 py-1 text-white text-center bg-[#FF6F61] text-lg font-semibold rounded-md mt-4 hover:bg-[#ca4236] mx-20 transition-all ease-in-out duration-300' onClick={handleSubmit}>Login</button>
-                        <p className='text-lg text-white'>Already have an account ? <Link to={"/login"} ><span className='text-[#FF6F61] link cursor-pointer font-semibold'>Signup</span></Link></p>
+                        <p className='text-lg text-white mt-2'>Already have an account ? <Link to={"/login"} ><span className='text-[#FF6F61] link cursor-pointer font-semibold'>Signup</span></Link></p>
                     </form>
                 </div>
             </div>

@@ -4,8 +4,8 @@ import HomeLayouts from '../Layouts/HomeLayouts';
 const AboutPage = () => {
     return (
         <HomeLayouts>
-            <div className='flex pl-[25%] items-center justify-between bg-[#191970] w-full h-auto'>
-                <div className='w-[40%] text-white'>
+            <div className='flex flex-col md:flex-row items-center justify-around px-5 bg-[#191970] w-full h-auto pt-[5em] md:pt-0'>
+                <div className='w-full md:w-[40%] text-white'>
                     <h1 className='text-3xl font-semibold'>Affordable and quality <span className='text-[#FF6F61] shadow-lg shadow-[#FF6F61] px-1'>Education</span></h1>
                     <p className='mt-5 text-md tracking-wider font-serif text-lg'>Our goal is to provide the affordable and quality  education to the world.We Providing the platform for the aspiring teachers and students to share their skills, crativity and knowledge to each other to empower and contribute in the growth and wellness of mankind</p>
                 </div>

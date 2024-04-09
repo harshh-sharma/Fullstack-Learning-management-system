@@ -29,32 +29,37 @@ const HomeLayouts = ({children}) => {
 
 
     const changeWidth = () => {
-        const drawerSide = document.getElementsByClassName("drawer-side");
-        console.log(drawerSide[0]);
-        drawerSide[0].style.width = "auto"; 
+        const drawerSide = document.getElementsByClassName("drawer-open");
+        const element = document.getElementsByClassName("drawer");
+        element[0].style.display = "flex" ;
     }
 
     const hideDrawer = () => {
-        const element = document.getElementsByClassName("drawer-toggle");
-        element[0].checked = false;
-        const drawerSide = document.getElementsByClassName("drawer-side");
-        drawerSide[0].style.width = "0" ;
+        const element = document.getElementsByClassName("drawer");
+        console.log(element[0]);
+        element[0].style.display = "none" ;
     }
 
     return (
      <div className="min-h-screen flex">
-        <div className='w-[20%] bg-[#ececec] text-[#191970] font-semibold flex py-20 px-7 text-xl h-[96vh] rounded-r-2xl absolute my-5 shadow-lg shadow-white'>
-            <div className='w-full'>
-                <ul className='gap-10 text-2xl w-full pt-[2em] h-full '>
-                    <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link to={"/"}>Home</Link></li>
-                    {isUserLoggedIn && userRole == "ADMIN" && (<li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>Admin Dashboard</Link></li>)}
-                    <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link to={"/about"}>About us</Link></li>
-                    <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>All courses</Link></li>
-                    <li className='mt-2 bg-[#191970] text-white px-2 rounded-full text-center py-2'><Link>Contact us</Link></li>
-                </ul>
-                {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/profile"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Profile</button></Link><Link to={"/logout"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-md text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-md text-center py-2'>Singnup</button></Link></div>)}
-            </div>
+        <div>
+            <FiMenu className='bg-transparent absolute left-5 text-white text-3xl m-5 drawer-open flex md:hidden' onClick={changeWidth} />
+        <div className={`w-9/12 hidden md:flex md:w-[20%] bg-[#ececec] text-[#191970] font-semibold py-20 px-7 text-xl h-[98vh] rounded-r-lg absolute md:my-2 shadow-lg shadow-white drawer`} >
+           
+           <div className=''>
+               <AiFillCloseCircle className='text-4xl w-1/2 text-center flex md:hidden' onClick={hideDrawer}/>
+               <ul className='gap-10 text-lg md:text-xl w-1/2 md:w-full pt-[2em] h-full mx-2 ' >
+               <Link to={"/"}><li className='mt-2 bg-[#191970] text-white rounded-lg text-center py-2' >Home</li></Link>
+                   {isUserLoggedIn && userRole == "ADMIN" && (<li className='mt-2 bg-[#191970] text-white px-2 rounded-lg text-center py-2'><Link>Admin Dashboard</Link></li>)}
+                   <Link to={"/about"}><li className='mt-2 bg-[#191970] text-white px-2 rounded-lg text-center py-2'>About us</li></Link>
+                   <Link><li className='mt-2 bg-[#191970] text-white px-2 rounded-lg text-center py-2'>All courses</li></Link>
+                   <Link><li className='mt-2 bg-[#191970] text-white px-2 rounded-lg text-center py-2'>Contact us</li></Link>
+               </ul>
+               {isUserLoggedIn ?  (<div className='flex justify-center items-center gap-2'><Link to={"/profile"}><button className='bg-[#191970] text-white px-7 rounded-lg text-center py-2'>Profile</button></Link><Link to={"/logout"}><button className='bg-[#191970] text-white px-5 rounded-lg text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='bg-[#191970] text-white px-7 rounded-lg text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='bg-[#191970] text-white px-5 rounded-lg text-center py-2'>Singnup</button></Link></div>)}
+           </div>
+       </div>
         </div>
+       
         {children}
         {/* <Footer/> */}
      </div>
