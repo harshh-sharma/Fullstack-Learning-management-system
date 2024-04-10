@@ -19,8 +19,8 @@ const CoursePage = () => {
     return (
         <HomeLayouts>
 
-            <div className='h-auto w-full flex flex-col justify-center items-center flex-wrap bg-[#191961] md:pl-[20em] pt-[5em]'>
-                <h1 className='text-white text-center mb-5 text-2xl font-semibold font-serif'>Explore the courses made by <span className='text-[#FF6F61]'>Industry Experts</span></h1>
+            <div className='h-auto w-full flex flex-col justify-center items-center flex-wrap bg-[#001F3F] md:pl-[20em] pt-[5em]'>
+                <h1 className='text-[#F5F5DC] text-center mb-5 text-2xl font-semibold font-serif'>Explore the courses made by <span className='text-[#FFD700]'>Industry Experts</span></h1>
                 <div className='flex flex-wrap justify-center items-center gap-5'>
                    {courseList && (courseList.map(data => <Card key={data?._id} data={data} />))}
                 </div>

@@ -51,17 +51,19 @@ export const logout = createAsyncThunk("/auth/logout",async() => {
    }
 })
 
+
+
 const authSlice = createSlice({
     name:"auth",
     initialState:{
         isLoggedIn: localStorage.getItem("isLoggedIn") || false,
         role: localStorage.getItem("role") || "",
-        data: localStorage.getItem("data") || {}
+        data: JSON.parse(localStorage.getItem("data")) || {}
     },
     reducers:{
-        setPageName: (state, newName) => {
-            state.pageName = newName
-        }
+        // setPageName: (state, newName) => {
+        //     state.pageName = newName
+        // }
     },
     extraReducers:(builder) => {
         builder

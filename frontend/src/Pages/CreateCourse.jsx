@@ -81,16 +81,16 @@ const CreateCourse = () => {
 
     return (
         <HomeLayouts>
-            <div className='flex justify-center items-center bg-[#191961] w-full text-white flex-col'>
+            <div className='flex justify-center items-center bg-[#001F3F] w-full text-white flex-col'>
             <h1 className='text-2xl font-serif font-semibold mb-2'>Create Course</h1>
-                <div className='w-fit shadow-lg shadow-white py-2 px-2'>
+                <div className='w-fit shadow-xl py-2 px-2'>
                 <div className=' text-white bg-transparent  shadow-xl h-auto w-auto grid grid-cols-2 justify-center px-2 py-2 rounded-md gap-5'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1 mt-2'>
                             <span  className='text-xl font-semibold text-white font-sans mb-1'>Thumbnail</span>
                             <label htmlFor="image-upload">
                                 {prevImage ? (<img src={prevImage} />) : (
-                                    <div className='w-[350px] h-[200px] flex justify-center items-center text-gray-100 text-lg font-semibold bg-[#FF6F61] cursor-pointer rounded-md'>
+                                    <div className='w-[350px] h-[200px] flex justify-center items-center text-[#001F3F] text-lg font-semibold bg-[#FFD700] cursor-pointer rounded-md'>
                                         <h1>upload course thumbnail</h1>
                                     </div>
                                 )}
@@ -111,7 +111,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.title}
                                 placeholder='Enter course title...'
-                                className='w-full bg-[#FF6F61] px-10 py-1 placeholder:text-white text-lg font-serif rounded-md'
+                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F]  px-10 py-1 text-lg font-serif rounded-md'
                             />
                         </div>
 
@@ -123,7 +123,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.category}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FF6F61] px-5 py-1 placeholder:text-white text-lg font-serif rounded-md'
+                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1  text-lg font-serif rounded-md'
                             />
                         </div>
                     </div>
@@ -136,7 +136,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.createdBy}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FF6F61] px-5 py-1 placeholder:text-white text-lg font-serif rounded-md'
+                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1  text-lg font-serif rounded-md'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
@@ -147,7 +147,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.startingDate}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FF6F61] px-5 py-1 placeholder:text-white text-lg font-serif rounded-md'
+                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1 text-lg font-serif rounded-md'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
@@ -158,13 +158,13 @@ const CreateCourse = () => {
                             onChange={handleCourseData}
                             value={courseData.description}
                             placeholder='Enter course description...'
-                            className='h-[200px] px-2 py-1 bg-[#FF6F61] text-white font-semibold text-lg placeholder:text-white rounded-md'
+                            className='h-[200px] px-2 py-1 bg-[#FFD700] placeholder:text-[#001F3F] text-white font-semibold text-lg rounded-md'
                         />
                         </div>
                         
                     </div>
                 </div>
-                <button className='w-full bg-[#FF6F61] text-white font-semibold text-xl hover:bg-[#fa5a4c] rounded-lg' onClick={handleSubmit}>Submit</button>
+                <button className='w-full bg-[#001F3F] text-[#F5F5DC] font-semibold text-xl border-2 border-[#F5F5DC] hover:bg-[#FFD700] transition-all ease-in-out duration-300 rounded-lg hover:text-[#001F3F]' onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </HomeLayouts>

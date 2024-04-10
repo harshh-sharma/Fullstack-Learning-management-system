@@ -13,6 +13,7 @@ import CourseDescription from './Pages/CourseDescription';
 import DeniesPage from './Pages/DeniesPage';
 import CreateCourse from './Pages/CreateCourse';
 import Authentication from './Pages/Authentication';
+import UserProfile from './Pages/UserProfile';
 function App() {
   return (
     <Routes>
@@ -26,6 +27,7 @@ function App() {
       <Route element={<Authentication allowedRoles={["ADMIN"]} />}>
         <Route path="/course/create" element={<CreateCourse />} />
       </Route>
+      <Route path="/profile" element={<UserProfile />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
