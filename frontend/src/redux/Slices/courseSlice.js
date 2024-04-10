@@ -4,7 +4,7 @@ import axiosInstance from "../../helpers/axiosInstance";
 
 export const getAllCourses = createAsyncThunk("/courses/",async () => {
   try {
-    console.log("yes");
+    // console.log("yes");
      const response = axiosInstance.get("/course");
      toast.promise(response,{
       loading:"loading courses",
@@ -14,6 +14,30 @@ export const getAllCourses = createAsyncThunk("/courses/",async () => {
      return (await response).data.data;
   } catch (error) {
     toast.error(error?.response?.data?.message);
+  }
+})
+
+export const createCourse = createAsyncThunk("/courses",async(courseData) => {
+  try {
+    // console.log();
+    const formdata = new FormData();
+    formdata.append("title",courseData?.title);
+    formdata.append("description",courseData?.description);
+    formdata.append("category",courseData?.category);
+    formdata.append("createdBy",courseData?.createdBy);
+    formdata.append("startingDate",courseData?.startingDate);
+    formdata.append("thumbnail",courseData?.thumbnail);
+    console.log(formdata);
+    const response = axiosInstance.post("/course/",formdata);
+    toast.promise(response,{
+      loading:"wait,course creation started",
+      success:"course successfully created",
+      error:"failed to create course"
+    })
+    return (await response).data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data);
   }
 })
 

@@ -51,6 +51,7 @@ const getCourseById = async(req,res) => {
 const createCourse = async (req,res) => {
     try {
         const {title,description,category,createdBy,startingDate} = req.body;
+        // console.log(req.body);
         if(!title || !description ||!category || !createdBy || !startingDate){
             return res.status(400).json({
                 success:false,
