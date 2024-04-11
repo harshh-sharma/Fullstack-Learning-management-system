@@ -43,21 +43,21 @@ const HomeLayouts = ({ children }) => {
         <div className="min-h-screen flex">
             <div>
                 <FiMenu className='bg-transparent absolute left-5 text-white text-3xl m-5 drawer-open flex md:hidden' onClick={changeWidth} />
-                <div className={`w-9/12 hidden md:flex md:w-[20%] bg-[#FFD700] text-[#191970] font-semibold py-20 px-7 text-xl h-[98vh] rounded-r-lg absolute md:my-2 shadow-lg shadow-white drawer`} >
+                <div className={`w-9/12 hidden md:flex md:w-[20%] font-semibold py-20 px-7 text-xl h-[98vh] rounded-r-lg absolute md:my-2 shadow-lg shadow-[#F5FCDC] drawer bg-white`} >
 
                     <div className=''>
                         <AiFillCloseCircle className='text-4xl w-1/2 text-center flex md:hidden' onClick={hideDrawer} />
                         <ul className='gap-10 text-lg md:text-xl w-1/2 md:w-full pt-[2em] h-full mx-2 ' >
-                            <Link to={"/"}><li className='mt-2 text-[#FFD700] bg-[#001F3F] rounded-lg text-center py-2' >Home</li></Link>
-                            {isUserLoggedIn && (userRole === '"ADMIN"') && (<li className='mt-2 text-[#FFD700] bg-[#001F3F] px-2 rounded-lg text-center py-2'><Link>Admin Dashboard</Link></li>)}
-                            <Link to={"/about"}><li className='mt-2 text-[#FFD700] bg-[#001F3F] px-2 rounded-lg text-center py-2'>About us</li></Link>
-                            <Link><li className='mt-2 text-[#FFD700] bg-[#001F3F] px-2 rounded-lg text-center py-2'>All courses</li></Link>
-                            <Link><li className='mt-2 text-[#FFD700] bg-[#001F3F] px-2 rounded-lg text-center py-2'>Contact us</li></Link>
+                            <Link to={"/"}><li className='mt-2 text-[#FFD700] bg-[#2a0845] rounded-lg text-center py-2' >Home</li></Link>
+                            {isUserLoggedIn && (userRole === '"ADMIN"') && (<li className='mt-2 text-[#FFD700] bg-[#2a0845] px-2 rounded-lg text-center py-2'><Link>Admin Dashboard</Link></li>)}
+                            <Link to={"/about"}><li className='mt-2 text-[#FFD700] bg-[#2a0845] px-2 rounded-lg text-center py-2'>About us</li></Link>
+                            <Link><li className='mt-2 text-[#FFD700] bg-[#2a0845] px-2 rounded-lg text-center py-2'>All courses</li></Link>
+                            <Link><li className='mt-2 text-[#FFD700] bg-[#2a0845] px-2 rounded-lg text-center py-2'>Contact us</li></Link>
                             {isUserLoggedIn && (userRole === '"ADMIN"') && (
-                                <Link to={"/course/create"}><li className='mt-2 text-[#FFD700] bg-[#001F3F] px-2 rounded-lg text-center py-2'>Create course</li></Link>
+                                <Link to={"/course/create"}><li className='mt-2 text-[#FFD700] bg-[#2a0845] px-2 rounded-lg text-center py-2'>Create course</li></Link>
                             )}
                         </ul>
-                        {isUserLoggedIn ? (<div className='flex justify-center items-center gap-2'><Link to={"/profile"}><button className='text-[#FFD700] bg-[#001F3F] px-7 rounded-lg text-center py-2'>Profile</button></Link><Link to={"/logout"}><button className='text-[#FFD700] bg-[#001F3F] px-5 rounded-lg text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='text-[#FFD700] bg-[#001F3F] px-7 rounded-lg text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='text-[#FFD700] bg-[#001F3F] px-5 rounded-lg text-center py-2'>Singnup</button></Link></div>)}
+                        {isUserLoggedIn ? (<div className='flex justify-center items-center gap-2'><Link to={"/profile"}><button className='text-[#FFD700] bg-[#2a0845] px-7 rounded-lg text-center py-2'>Profile</button></Link><Link to={"/logout"}><button className='text-[#FFD700] bg-[#2a0845] px-5 rounded-lg text-center py-2' onClick={handleLogout}>Logout</button></Link></div>) : (<div className='flex justify-center items-center gap-2'><Link to={"/login"}><button className='text-[#FFD700] bg-[#2a0845] px-7 rounded-lg text-center py-2'>Login</button></Link><Link to={"/signup"}><button className='text-[#FFD700] bg-[#2a0845] px-5 rounded-lg text-center py-2'>Singnup</button></Link></div>)}
                     </div>
                 </div>
             </div>

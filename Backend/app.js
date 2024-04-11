@@ -4,6 +4,7 @@ import morgan from "morgan";
 import userRouter from "./routes/userRoutes.js";
 import courseRouter from "./routes/courseRoutes.js";
 import cookieParser from "cookie-parser";
+import paymentRouter from "./routes/paymentRoutes.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get("/",(req,res) => {
 
 app.use("/api/v1/user",userRouter);
 app.use("/api/v1/course",courseRouter);
+app.use("/api/v1/payment",paymentRouter);
 
 app.all("*",(req,res) => {
     res.status(404).send("404 OOPS!! Page not found");

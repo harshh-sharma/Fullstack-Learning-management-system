@@ -14,6 +14,7 @@ import DeniesPage from './Pages/DeniesPage';
 import CreateCourse from './Pages/CreateCourse';
 import Authentication from './Pages/Authentication';
 import UserProfile from './Pages/UserProfile';
+import EditProfile from './Pages/EditProfile';
 function App() {
   return (
     <Routes>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/course/create" element={<CreateCourse />} />
       </Route>
       <Route path="/profile" element={<UserProfile />} />
+      <Route path="/profile/edit" element={<EditProfile />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )

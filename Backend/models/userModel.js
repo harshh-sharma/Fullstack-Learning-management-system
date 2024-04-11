@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
+
+
 const userSchema = new Schema({
     name:{
         type:String,
@@ -30,8 +32,11 @@ const userSchema = new Schema({
     avatar:{
         public_id:String,
         secure_url:String
-    }
-    ,
+    },
+    subscription:{
+        id:String,
+        status:String
+    },
     forgotPasswordToken:String,
     forgotPasswordExpiry:Date
 },{

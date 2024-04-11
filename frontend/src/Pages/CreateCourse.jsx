@@ -81,16 +81,16 @@ const CreateCourse = () => {
 
     return (
         <HomeLayouts>
-            <div className='flex justify-center items-center bg-[#001F3F] w-full text-white flex-col'>
-            <h1 className='text-2xl font-serif font-semibold mb-2'>Create Course</h1>
+            <div className='flex justify-center items-center bg-[#2a0845] w-full text-white flex-col'>
+            <h1 className='text-2xl font-serif font-semibold mb-2 text-[#FFD700]'>Create Course</h1>
                 <div className='w-fit shadow-xl py-2 px-2'>
                 <div className=' text-white bg-transparent  shadow-xl h-auto w-auto grid grid-cols-2 justify-center px-2 py-2 rounded-md gap-5'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1 mt-2'>
-                            <span  className='text-xl font-semibold text-white font-sans mb-1'>Thumbnail</span>
+                            <span  className='text-xl font-semibold text-[#FFD700]  font-sans mb-1'>Thumbnail</span>
                             <label htmlFor="image-upload">
                                 {prevImage ? (<img src={prevImage} />) : (
-                                    <div className='w-[350px] h-[200px] flex justify-center items-center text-[#001F3F] text-lg font-semibold bg-[#FFD700] cursor-pointer rounded-md'>
+                                    <div className='w-[350px] h-[200px] flex justify-center items-center text-[#2a0845] text-lg font-semibold bg-gray-200 cursor-pointer rounded-md'>
                                         <h1>upload course thumbnail</h1>
                                     </div>
                                 )}
@@ -104,67 +104,67 @@ const CreateCourse = () => {
 
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <label htmlFor="title" className='text-xl font-semibold text-white font-sans mb-1'>Title</label>
+                            <label htmlFor="title" className='text-xl font-semibold text-[#FFD700] font-sans mb-1'>Title</label>
                             <input type="text"
                                 name='title'
                                 id='title'
                                 onChange={handleCourseData}
                                 value={courseData.title}
                                 placeholder='Enter course title...'
-                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F]  px-10 py-1 text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845]  px-10 py-1 text-lg font-serif rounded-md'
                             />
                         </div>
 
                         <div className='flex flex-col gap-1'>
-                            <label htmlFor="category" className='text-xl font-semibold text-white font-sans mb-1'>Category</label>
+                            <label htmlFor="category" className='text-xl font-semibold text-[#FFD700] font-sans mb-1'>Category</label>
                             <input type="text"
                                 name='category'
                                 id='category'
                                 onChange={handleCourseData}
                                 value={courseData.category}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1  text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md'
                             />
                         </div>
                     </div>
                     <div className='gap-2 flex flex-col'>
                         <div className='flex flex-col gap-1'>
-                            <label htmlFor="created-by" className='text-xl font-semibold text-white font-sans mt-2 mb-2'>Created by</label>
+                            <label htmlFor="created-by" className='text-xl font-semibold text-[#FFD700] font-sans mt-2 mb-2'>Created by</label>
                             <input type="text"
                                 name='createdBy'
                                 id='created-by'
                                 onChange={handleCourseData}
                                 value={courseData.createdBy}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1  text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <label htmlFor="starting-date" className='text-xl font-semibold text-white font-sans mt-2 mb-2'>Starting date</label>
+                            <label htmlFor="starting-date" className='text-xl font-semibold text-[#FFD700] font-sans mt-2 mb-2'>Starting date</label>
                             <input type="text"
                                 name='startingDate'
                                 id='startin-date'
                                 onChange={handleCourseData}
                                 value={courseData.startingDate}
                                 placeholder='Enter course category...'
-                                className='w-full bg-[#FFD700] placeholder:text-[#001F3F] px-5 py-1 text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1 text-lg font-serif rounded-md'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
-                        <label htmlFor="description" className='text-xl font-semibold text-white font-sans mb-1'>Description</label>
+                        <label htmlFor="description" className='text-xl font-semibold text-[#FFD700] font-sans mb-1'>Description</label>
                         <input type="text"
                             name="description"
                             id="description"
                             onChange={handleCourseData}
                             value={courseData.description}
                             placeholder='Enter course description...'
-                            className='h-[200px] px-2 py-1 bg-[#FFD700] placeholder:text-[#001F3F] text-white font-semibold text-lg rounded-md'
+                            className='h-[200px] p-2 w-full bg-gray-200 placeholder:text-[#2a0845] text-white font-semibold text-lg rounded-md'
                         />
                         </div>
                         
                     </div>
                 </div>
-                <button className='w-full bg-[#001F3F] text-[#F5F5DC] font-semibold text-xl border-2 border-[#F5F5DC] hover:bg-[#FFD700] transition-all ease-in-out duration-300 rounded-lg hover:text-[#001F3F]' onClick={handleSubmit}>Submit</button>
+                <button className='w-full bg-[#FFD700] text-[#2a0845] font-semibold text-xl border-2 border-[#2a0845] hover:bg-[#FFD700] transition-all ease-in-out duration-300 rounded-lg hover:text-[#2a0845]' onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </HomeLayouts>

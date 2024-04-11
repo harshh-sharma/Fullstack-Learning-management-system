@@ -113,9 +113,9 @@ const logout = (req, res) => {
 
 const getUserProfile = async(req,res) => {
     const {id} = req.user;
-    console.log(req.user);
+    // console.log("name",req.user);
     try {
-        const user = await User.findById(_id);
+        const user = await User.findById(id);
         // console.log(user);
         if(!user){
             return res.status(400).json({
@@ -129,6 +129,7 @@ const getUserProfile = async(req,res) => {
             data:user
         })
     } catch (error) {
+        console.log(error.message);
         res.status(500).json({
             success:false,
             message:error.message
@@ -265,13 +266,18 @@ const updateUser = async (req, res) => {
             message: "user doesn't exists"
         })
     }
+    
+    console.log(name);
 
     if(name){
+        console.log("no00000");
         user.name = name;
     }
 
     try {
+        // console.log(req.file);
         if (req.file) {
+            console.log(req.file);
             // console.log("req", req.file);
             await cloudinary.v2.uploader.destroy(user.avatar.public_id);
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
@@ -286,12 +292,16 @@ const updateUser = async (req, res) => {
                 user.avatar.secure_url = result.secure_url;
             }
         }
+        // console.log(user);
         await user.save();
+        const updatedUser = await User.findById(user._id);
+        console.log(updatedUser);
         res.status(200).json({
             success:true,
             message:"Profile updated successfully"
         })
     } catch (error) {
+        console.log(error.message);
         res.status(500).json({
             success:false,
             message:error.message

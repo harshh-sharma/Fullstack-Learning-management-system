@@ -8,7 +8,7 @@ export const createAccount = createAsyncThunk("/auth/signup",async(data) => {
         toast.promise(res,{
             loading:"Wait !! creating your account",
             success:(data) => {
-                console.log("dat",data);
+                // console.log("dat",data);
                 return data?.data?.message;
             },
             error:"Failed to create account"
@@ -51,7 +51,36 @@ export const logout = createAsyncThunk("/auth/logout",async() => {
    }
 })
 
+export const updateUserProfile = createAsyncThunk("/auth/edit",async(userData) => {
+    try {
+        console.log(userData);
+        // const formData = new FormData();
+        // formData.append("avatar",userData);
+        const response = axiosInstance.put("/user/update",{userData});
+        toast.promise(response,{
+            loading:"wait !! updating your profile",
+            success:"profile updated successfully",
+            error:"failed to update user profile"
+        })
+        return (await response).data
+    } catch (error) {
+        toast.error(response?.data?.message)
+    }
+})
 
+export const getUserProfile = createAsyncThunk("/auth/profile",async() => {
+    try {
+        const response = axiosInstance.get("/user/profile");
+        toast.promise(response,{
+            loading:"wait || profile is loaded",
+            success:"profile get succesfully",
+            error:"failed to get profile"
+        })
+        return (await response).data;
+    } catch (error) {
+        toast.error(response?.data?.message)
+    }
+})
 
 const authSlice = createSlice({
     name:"auth",
@@ -81,6 +110,10 @@ const authSlice = createSlice({
             state.data = {}
             state.isLoggedIn = false,
             state.role = ""
+        })
+        .addCase(getUserProfile.fulfilled,(state,action) => {
+            localStorage.setItem("data",JSON.stringify(action?.payload?.data));
+            state.data = JSON.stringify(action?.payload?.data);
         })
     }
 })
