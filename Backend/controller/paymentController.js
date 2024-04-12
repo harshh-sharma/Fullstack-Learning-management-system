@@ -136,7 +136,7 @@ const cancelSubscription = async (req,res) => {
 const allPayments = (req,res) => {
     const {count} = req.params;
     try {
-        const subscription = await razorpay.subscription.all({
+        const subscription = razorpay.subscription.all({
             count : count || 10
         })
         res.status(200).json({
