@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import axiosInstance from "../../helpers/axiosInstance"
 
+
 export const createAccount = createAsyncThunk("/auth/signup",async(data) => {
     try {
         const res = axiosInstance.post("user/register",data);
@@ -28,10 +29,12 @@ export const login = createAsyncThunk("/auth/login",async(data) => {
             success:(data) => {
                 return data?.data?.message;
             },
-            error:"Failed to login account"
+            error:res?.data?.message
         })
+        // console.log(await res);
         return (await res).data
     } catch (error) {
+        console.log(error);
         toast.error(error?.res?.message);
     }
 })
@@ -82,12 +85,28 @@ export const getUserProfile = createAsyncThunk("/auth/profile",async() => {
     }
 })
 
+export const getSubscription = createAsyncThunk("payment/subcribe",async() =>{
+    try {
+        const response = axiosInstance.post("/payment/subscribe");
+        toast.promise(response,{
+            loading:"wait !! for subscription",
+            success:"successfully subscribe the course",
+            error:"failed to subscribe"
+        })
+        return (await response).data
+    } catch (error) {
+        toast.error(error?.response?.data?.message)
+    }
+})
+
 const authSlice = createSlice({
     name:"auth",
     initialState:{
         isLoggedIn: localStorage.getItem("isLoggedIn") || false,
         role: localStorage.getItem("role") || "",
-        data: JSON.parse(localStorage.getItem("data")) || {}
+        data: localStorage.getItem("data") == 'undefined' ? {} : JSON.parse(localStorage.getItem("data")),
+        subscriptionStatus:localStorage.getItem("status") ||""
+        // !== undefined ? JSON.parse(localStorage.getItem("data")) :
     },
     reducers:{
         // setPageName: (state, newName) => {
@@ -106,15 +125,20 @@ const authSlice = createSlice({
             state.role = JSON.stringify(action?.payload?.user?.role);
         })
         .addCase(logout.fulfilled,(state,action) => {
-            localStorage.clear();
-            state.data = {}
+            state.data = {};
             state.isLoggedIn = false,
             state.role = ""
+            localStorage.clear();
         })
         .addCase(getUserProfile.fulfilled,(state,action) => {
             localStorage.setItem("data",JSON.stringify(action?.payload?.data));
             state.data = JSON.stringify(action?.payload?.data);
         })
+        .addCase(getSubscription.fulfilled,(state,action) => {
+            // console.log(state);
+            localStorage.setItem("status",JSON.stringify(action?.payload?.data?.subscription?.status));
+            state.subscriptionStatus = action?.payload?.data?.subscription?.status
+       })
     }
 })
 

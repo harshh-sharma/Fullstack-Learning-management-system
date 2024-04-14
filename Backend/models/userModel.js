@@ -2,6 +2,7 @@ import mongoose, {Schema} from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import { type } from "os";
 
 
 
@@ -35,7 +36,11 @@ const userSchema = new Schema({
     },
     subscription:{
         id:String,
-        status:String
+        status:{
+            type:String,
+            enum:["active","inactive"],
+            default:"active"
+        },
     },
     forgotPasswordToken:String,
     forgotPasswordExpiry:Date

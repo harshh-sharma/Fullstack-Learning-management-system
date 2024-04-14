@@ -29,15 +29,15 @@ const buySubscription = async (req,res) => {
                 })
             }
 
-            if(user.role == "ADMIN"){
-                return res.status(401).json({
-                    success:false,
-                    message:"admin cannot purchase coures"
-                })
-            }
-
-            const subscription = await razorpay.subscription.create({
-                plan_id: process.env.RAZORPAY_PLAN_ID,
+            // if(user.role == "ADMIN"){
+            //     return res.status(401).json({
+            //         success:false,
+            //         message:"admin cannot purchase coures"
+            //     })
+            // }
+            console.log(razorpay);
+            const subscription = await razorpay.subscriptions.create({
+                // plan_id: process.env.RAZORPAY_PLAN_ID,
                 customer_notify:1
             })
 
@@ -51,6 +51,7 @@ const buySubscription = async (req,res) => {
                 subscription_id:subscription.id
             })
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 success:false,
                 message:error.message
@@ -152,10 +153,40 @@ const allPayments = (req,res) => {
     }
 }
 
+const subscribe = async(req,res) => {
+    try {
+        const {id} = req.user;
+        const user = await User.findById(id);
+        if(!user){
+            return res.status(400).json({
+                success:false,
+                message:"unauthorized user"
+            })
+        }
+
+        user.subscription.status = "active";
+        user.save();
+
+        res.status(201).json({
+            success:true,
+            message:"user is subscribed",
+            data:user
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error.message,
+            
+        })
+    }
+}
+
 export {
     getRazorPayApiKey,
     buySubscription,
     verifySubscription,
     cancelSubscription,
-    allPayments
+    allPayments,
+    subscribe
 }

@@ -15,6 +15,10 @@ import CreateCourse from './Pages/CreateCourse';
 import Authentication from './Pages/Authentication';
 import UserProfile from './Pages/UserProfile';
 import EditProfile from './Pages/EditProfile';
+import Checkout from './Pages/Payments/Checkout'
+import Success from './Pages/Payments/Sucess';
+import DisplayLectures from './Pages/Dasboard/DisplayLectures';
+
 function App() {
   return (
     <Routes>
@@ -25,8 +29,11 @@ function App() {
       <Route path="/courses" element={<CoursePage />} />
       <Route path="/course/description" element={<CourseDescription />} />
       <Route path="/denied" element={<DeniesPage />} />
-      <Route element={<Authentication allowedRoles={["ADMIN"]} />}>
+      <Route element={<Authentication allowedRoles={["ADMIN","USER"]} />}>
         <Route path="/course/create" element={<CreateCourse />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/course/lecture" element={<DisplayLectures />} />
       </Route>
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/profile/edit" element={<EditProfile />} />

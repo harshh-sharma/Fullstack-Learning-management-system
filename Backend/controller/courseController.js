@@ -228,6 +228,7 @@ const addLecturesByCourseId = async (req,res) => {
         }
 
         if (req.file) {
+            console.log("yess");
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
                
             })
@@ -306,6 +307,23 @@ const deleteLectureByCourseId = async (req,res) => {
     }
 }
 
+const getLectureByCourseId = async(req,res) => {
+    const {courseId} = req.params;
+    if(!courseId){
+        return res.status(400).json({
+            success:false,
+            message:"courseId is required"
+        });
+    }
+    
+    const course = await Course.findById(courseId);
+    console.log(course);
+    res.status(200).json({
+        success:true,
+        course
+    })
+}
+
 export {
     getAllCourses,
     getCourseById,
@@ -314,5 +332,6 @@ export {
     deleteCourse,
     isAuthorized,
     addLecturesByCourseId,
-    deleteLectureByCourseId
+    deleteLectureByCourseId,
+    getLectureByCourseId
 }

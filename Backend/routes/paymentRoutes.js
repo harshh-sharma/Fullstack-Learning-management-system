@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allPayments, buySubscription, cancelSubscription, getRazorPayApiKey, verifySubscription } from "../controller/paymentController.js";
+import { allPayments, buySubscription, cancelSubscription, getRazorPayApiKey, subscribe, verifySubscription } from "../controller/paymentController.js";
 import isAuthenticated from "../middleware/authMiddleware.js";
 import { isAuthorized } from "../controller/courseController.js";
 
@@ -26,6 +26,8 @@ paymentRouter.route("/").get(
     isAuthorized("ADMIN"),
     allPayments
 );
+
+paymentRouter.post("/subscribe",isAuthenticated,subscribe);
 
 export default paymentRouter;
 

@@ -2,11 +2,14 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import axiosInstance from "../../helpers/axiosInstance"
 
+
+
 export const getRazorpayId = createAsyncThunk("payment/razorpay",async() => {
     try {
-        const response = await axiosInstance.post("/payment/buySubscription");
-        return response?.data
-        return (await response).data;
+        const response = await axiosInstance.get("/payment//razorpay-key");
+        console.log(response);
+        return await response?.data
+        // return (await response).data;
     } catch (error) {
         toast.error(error?.res?.data);
     }
@@ -14,7 +17,7 @@ export const getRazorpayId = createAsyncThunk("payment/razorpay",async() => {
 
 export const purchaseCourseBundle = createAsyncThunk("/purchase",async() => {
     try {
-        const response = axiosInstance.post("/payment/");
+        const response = axiosInstance.post("/payment/buySubscription");
         toast.promise(response,{
             loading:"wait !!",
             success:"razorpay id successfuuly get",

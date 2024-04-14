@@ -3,7 +3,11 @@ import {useSelector} from "react-redux";
 import {Navigate,Outlet} from "react-router-dom";
 
 const Authentication = ({allowedRoles}) => {
-    const adminRoles = `"${allowedRoles}"`;
+    console.log(allowedRoles);
+    const adminRoles = `"${allowedRoles[0]}"`;
+    const userRoles = `"${allowedRoles[1]}"`;
+    console.log(userRoles);
+    console.log(adminRoles);
     const {isLoggedIn,role} = useSelector(store => store?.auth);
 
   return (isLoggedIn && adminRoles === role) ? (
