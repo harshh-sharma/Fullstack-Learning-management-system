@@ -15,7 +15,10 @@ courseRouter.route("/:id").get(isAuthenticated,getAllCourses)
 
 
 courseRouter.route("/:courseId/:lectureId")
-                                            .delete(isAuthenticated,isAuthorized("ADMIN"),deleteLectureByCourseId)
-                                            .get(isAuthenticated,getLectureByCourseId);
+                                 .delete(isAuthenticated,isAuthorized("ADMIN"),deleteLectureByCourseId);
+
+courseRouter.route("/:courseId/1")
+                                 .post(isAuthenticated,getLectureByCourseId);
+                                
 
 export default courseRouter;

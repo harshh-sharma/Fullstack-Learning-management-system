@@ -9,7 +9,7 @@ const CourseDescription = () => {
     const userData = useSelector(store => store?.auth?.data);
 
     const {state} = useLocation();
-    console.log(state);
+    // console.log(state);
     const {thumbnail,description,title,startingDate,createdBy} = state;
   return (
     <HomeLayouts>
@@ -25,7 +25,7 @@ const CourseDescription = () => {
                     </div>
                     <p className='font-semibold text-md my-1'>Instructor : <span className='text-black font-semibold'>{createdBy}</span></p>
                     <p className='font-semibold text-md my-1'>Starting Date : <span className='text-black font-semibold'>{startingDate}</span></p>
-                    {userData.role === '"ADMIN"' || userData?.subscription.status === "active"  ? ( <button className='bg-[#2a0845] text-center text-[#] text-lg rounded-md w-full mt-2 py-1 text-[#FFD700] font-semibold' onClick={() => navigate("/course/lecture")}>Watch Lectures</button>) : ( <button className='bg-[#2a0845] text-center text-[#] text-lg rounded-md w-full mt-2 py-1 text-[#FFD700] font-semibold' onClick={() => navigate("/checkout")}>Subscribe</button>) }
+                    {userData.role === '"ADMIN"' || userData?.subscription.status === "active"  ? ( <button className='bg-[#2a0845] text-center text-[#] text-lg rounded-md w-full mt-2 py-1 text-[#FFD700] font-semibold' onClick={() => navigate("/course/lecture",{state:{state}})}>Watch Lectures</button>) : ( <button className='bg-[#2a0845] text-center text-[#] text-lg rounded-md w-full mt-2 py-1 text-[#FFD700] font-semibold' onClick={() => navigate("/checkout")}>Subscribe</button>) }
                     <button className='bg-[#2a0845] text-center text-[#] text-lg rounded-md w-full mt-2 py-1 text-[#FFD700] font-semibold' onClick={() => navigate(-1)}>Back to courses</button>
                 </div>
             </div>

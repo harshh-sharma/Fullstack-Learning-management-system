@@ -269,19 +269,23 @@ const deleteLectureByCourseId = async (req,res) => {
         }
 
         const course = await Course.findById(courseId);
-        // console.log("old",course.lectures);
-        const lectures = course.lectures.filter(lecture => !(lecture.id == lectureId));
-        // console.log("new",lectures);
-        // console.log(course.lectures);
-        course.lectures.length = 0 ;
-        course.lectures = lectures;
-        course.numberOfLectures = course.lectures.length;
+        if(course.lectures.length > 1){
+            const lectures = course.lectures.filter(lecture => !(lecture.id == lectureId));
+            course.lectures.length = 0 ;
+            course.lectures = lectures;
+            course.numberOfLectures = course.lectures.length;
+        }else{
+            console.log("esle part");
+            course.lectures = [];
+            course.numberOfLectures = course.lectures.length;
+        }
+        
         await course.save();
-        console.log(course);
+        console.log(course?.lectures);
         if(!course){
             return res.status(400).json({
                 success:false,
-                message:"There is no course exists related to this Id"
+                message:"There is no course exists related to this Id",
             })
         }
 
@@ -297,7 +301,8 @@ const deleteLectureByCourseId = async (req,res) => {
       
         res.status(200).json({
             success:true,
-            message:"Lecture successfully deleted"
+            message:"Lecture successfully deleted",
+            course
         })
     } catch (error) {
         res.status(500).json({
@@ -308,20 +313,27 @@ const deleteLectureByCourseId = async (req,res) => {
 }
 
 const getLectureByCourseId = async(req,res) => {
-    const {courseId} = req.params;
-    if(!courseId){
-        return res.status(400).json({
-            success:false,
-            message:"courseId is required"
-        });
-    }
-    
-    const course = await Course.findById(courseId);
-    console.log(course);
-    res.status(200).json({
-        success:true,
-        course
+   try {
+     const {courseId} = req.params;
+     if(!courseId){
+         return res.status(400).json({
+             success:false,
+             message:"courseId is required"
+         });
+     }
+     
+     const course = await Course.findById(courseId);
+     console.log(course);
+     res.status(200).json({
+         success:true,
+         data:course
+     })
+   } catch (error) {
+    return res.status(500).json({
+        success:false,
+        message:error.message
     })
+   }
 }
 
 export {
