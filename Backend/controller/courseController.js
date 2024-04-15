@@ -191,6 +191,7 @@ const isAuthorized = (...roles) => async (req,res,next) => {
 
 const addLecturesByCourseId = async (req,res) => {
     try {
+        console.log("come");
         const {title,description} = req.body;
         const {id} = req.params;
         if(!id){
@@ -228,9 +229,10 @@ const addLecturesByCourseId = async (req,res) => {
         }
 
         if (req.file) {
-            console.log("yess");
+
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
-               
+               chunk_size:50000000,
+               resource_type:"video"
             })
             console.log(result);
             if (result) {
@@ -314,6 +316,7 @@ const deleteLectureByCourseId = async (req,res) => {
 
 const getLectureByCourseId = async(req,res) => {
    try {
+    console.log("coming");
      const {courseId} = req.params;
      if(!courseId){
          return res.status(400).json({

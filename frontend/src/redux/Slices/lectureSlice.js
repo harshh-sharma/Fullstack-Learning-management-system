@@ -31,6 +31,26 @@ export const deleteLectureByCourseId = createAsyncThunk("/course/lecture/delete"
     }
 })
 
+export const addLetureByCourseId = createAsyncThunk("/course/addLecture",async(data) => {
+    try {
+        // console.log(data);
+        const formData = new FormData();
+        formData.append("title",data?.title);
+        formData.append("description",data?.description);
+        formData.append("lecture",data.lecture);
+        console.log(formData);
+        const response = axiosInstance.post(`/course/${data?.courseId}`,formData);
+        toast.promise(response,{
+            loading:"wait !! added lecture in progress",
+            success:"lecture successfully data",
+            error:"error to failed upload lecture"
+        });
+        return (await response).data;
+    } catch (error) {
+        error?.response?.data?.message
+    }
+})
+
 const lectureSlice = createSlice({
     name:"lecture",
     initialState:{
