@@ -3,13 +3,16 @@ import HomeLayouts from '../../Layouts/HomeLayouts'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getSubscription } from '../../redux/Slices/authSlice';
+import { getSubscription, getUserProfile } from '../../redux/Slices/authSlice';
 
 const Success = () => {
     const dispatch = useDispatch();
     const load = async () => {
         const res = await dispatch(getSubscription());
-        console.log(res);
+        if(res?.payload?.success){
+          console.log("getuserprofile");
+          await dispatch(getUserProfile());
+        }
       }
     
       useEffect(() => {

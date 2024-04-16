@@ -8,6 +8,7 @@ const DisplayLectures = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
+  console.log("s",state);
   const lectureData = useSelector(store => store?.lecture?.lectures);
   const role = useSelector(store => store?.auth?.data?.role);
   const [currentVideo, setCurrentVedio] = useState(lectureData[0]?.lecture?.
@@ -31,20 +32,17 @@ const DisplayLectures = () => {
     loadData();
   }, []);
 
-  const [componentRender, setComponentRender] = useState(true);
-
   const deleteLecture = async (data, index) => {
-    // e.preventDefault();
-    // console.log(index);
-    // console.log(data);
-    dispatch(deleteLectureByCourseId({ courseId: state?.state?._id, lectureId: data }));
-    loadData();
-    setComponentRender(!componentRender);
+    const response = await dispatch(deleteLectureByCourseId({ courseId: state?.state?._id, lectureId: data }));
+    if(response?.payload?.success){
+      const courseId = state?.state?._id;
+      await dispatch(getLectureByCourseID(courseId))
+    }
 
     if (index !== 0) {
-      setCurrentVedio(res?.payload?.data?.lectures[0].lecture?.secure_url)
-      setCurrentTitle(res?.payload?.data?.lectures[0]?.title);
-      setCurrentPara(res?.payload?.data?.lectures[0]?.description);
+      setCurrentVedio(res?.payload?.data?.lectures[index-1].lecture?.secure_url)
+      setCurrentTitle(res?.payload?.data?.lectures[index-1]?.title);
+      setCurrentPara(res?.payload?.data?.lectures[index-1]?.description);
     } else {
       setCurrentVedio("")
       setCurrentTitle("");
@@ -73,8 +71,8 @@ const DisplayLectures = () => {
               <p className='text-[#FFf] text-lg'>{currentPara}</p>
             </div>
             <div className=' my-7 w-auto'>
-              {role === "ADMIN" && <button onClick={() => navigate("/course/addlecture", { state: {state}})} className='bg-[#fff] text-[#2a0845] px-2 y-2 text-lg font-semibold rounded-md shadow-md relative ml-[10em]'>Add Lecture</button>}
-              <div className='flex flex-col px-2 items-center overflow-y-auto overflow-hidden h-[400px]'>
+              {role === "ADMIN" && <button onClick={() => navigate("/course/addlecture", { state: {state}})} className='bg-[#fff] text-[#2a0845] px-2 y-2 text-lg font-semibold rounded-md shadow-md relative ml-[10em] hover:bg-[#ffd700] transition-all duration-300 ease-in-out hover:text-white'>Add Lecture</button>}
+              <div className='flex flex-col px-2 items-center overflow-y-auto overflow-hidden h-[400px] mt-4 py-2'>
                 <li>
                   {lectureData && lectureData.map((lecture, index) => <div onClick={() => {
                     setCurrentVedio(lectureData[index]?.lecture?.
@@ -84,14 +82,14 @@ const DisplayLectures = () => {
                   }} key={lecture?.lecture?.public_id} className='flex flex-col  gap-0 rounded-md shadow-lg bg-white text-[#2a0845] my-2 px-2 font-serif cursor-pointer'>
                     <h2 className='text-lg font-semibold'>{lecture?.title}</h2>
                     <p className=''><span>{`Leture: ${""}${index + 1} ${"  "}`}</span>{lecture?.description}</p>
-                    {role === "ADMIN" && <button className='bg-[#2a0845] text-white px-2 y-2 w-fit text-md rounded-md shadow-md my-1 ' onClick={() => deleteLecture(lecture?._id, index)}>Delete Lecture</button>}
+                    {role === "ADMIN" && <button className='bg-[#2a0845] text-white px-2 y-2 w-fit text-md rounded-md shadow-md my-1 transition-all ease-in-out duration-300 hover:bg-[#ffd700] hover:to-white ' onClick={() => deleteLecture(lecture?._id, index)}>Delete Lecture</button>}
                   </div>)}
                 </li>
               </div>
             </div>
           </div>) : (<div className='flex justify-center items-center flex-col'>
             <h1 className='text-white font-semibold font-serif'>There is no lectures to view</h1>
-            {role == "ADMIN" && (<button onClick={() => navigate("/course/addlecture",{state:{state}})} className='bg-[#fff] text-[#2a0845] px-2 y-2 text-lg font-semibold rounded-md shadow-md'>Add Lecture</button>)}
+            {role == "ADMIN" && (<button onClick={() => navigate("/course/addlecture",{state:{state}})} className='bg-[#fff] text-[#2a0845] px-2 y-2 text-lg font-semibold rounded-md shadow-md transition-all ease-in-out duration-300 hover:bg-[#ffd700] hover:to-white'>Add Lecture</button>)}
           </div>)}
         </div>
       </div>

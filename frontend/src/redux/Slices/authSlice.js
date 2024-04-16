@@ -120,9 +120,9 @@ const authSlice = createSlice({
             localStorage.setItem("isLoggedIn",true);
             localStorage.setItem("role",JSON.stringify(action?.payload?.user?.role));
             state.isLoggedIn = true,
-            state.data = JSON.stringify(action?.payload?.user);
+            state.data = JSON.parse(JSON.stringify(action?.payload?.user));
             state.isLoggedIn = true,
-            state.role = JSON.stringify(action?.payload?.user?.role);
+            state.role = JSON.parse(JSON.stringify(action?.payload?.user?.role));
         })
         .addCase(logout.fulfilled,(state,action) => {
             state.data = {};
@@ -132,11 +132,12 @@ const authSlice = createSlice({
         })
         .addCase(getUserProfile.fulfilled,(state,action) => {
             localStorage.setItem("data",JSON.stringify(action?.payload?.data));
-            state.data = JSON.stringify(action?.payload?.data);
+            state.data = JSON.parse(JSON.stringify(action?.payload?.data));
         })
         .addCase(getSubscription.fulfilled,(state,action) => {
             // console.log(state);
             localStorage.setItem("status",JSON.stringify(action?.payload?.data?.subscription?.status));
+            console.log(action?.payload?.data);
             state.subscriptionStatus = action?.payload?.data?.subscription?.status
        })
     }

@@ -39,7 +39,7 @@ const userSchema = new Schema({
         status:{
             type:String,
             enum:["active","inactive"],
-            default:"active"
+            default:"inactive"
         },
     },
     forgotPasswordToken:String,

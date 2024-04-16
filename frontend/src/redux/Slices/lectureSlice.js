@@ -26,6 +26,7 @@ export const deleteLectureByCourseId = createAsyncThunk("/course/lecture/delete"
             success:"lecture successfully deleted",
             error:"failed to delete lecture"
         })
+        return (await response).data;
     } catch (error) {
         toast.error(error?.response?.data?.message)
     }

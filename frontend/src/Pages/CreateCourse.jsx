@@ -83,7 +83,7 @@ const CreateCourse = () => {
         <HomeLayouts>
             <div className='flex justify-center items-center bg-[#2a0845] w-full text-white flex-col'>
             <h1 className='text-2xl font-serif font-semibold mb-2 text-[#FFD700]'>Create Course</h1>
-                <div className='w-fit shadow-xl py-2 px-2'>
+                <div className='w-fit py-2 px-2 shadow-lg shadow-[#ffd700]'>
                 <div className=' text-white bg-transparent  shadow-xl h-auto w-auto grid grid-cols-2 justify-center px-2 py-2 rounded-md gap-5'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1 mt-2'>
@@ -111,7 +111,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.title}
                                 placeholder='Enter course title...'
-                                className='w-full bg-gray-200 placeholder:text-[#2a0845]  px-10 py-1 text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] text-[#2a0845]  px-10 py-1 text-lg font-serif rounded-md'
                             />
                         </div>
 
@@ -123,7 +123,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.category}
                                 placeholder='Enter course category...'
-                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md text-[#2a0845]'
                             />
                         </div>
                     </div>
@@ -136,7 +136,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.createdBy}
                                 placeholder='Enter course category...'
-                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1  text-lg font-serif rounded-md text-[#2a0845]'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
@@ -147,7 +147,7 @@ const CreateCourse = () => {
                                 onChange={handleCourseData}
                                 value={courseData.startingDate}
                                 placeholder='Enter course category...'
-                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1 text-lg font-serif rounded-md'
+                                className='w-full bg-gray-200 placeholder:text-[#2a0845] px-5 py-1 text-lg font-serif rounded-md text-[#2a0845]'
                             />
                         </div>
                         <div className='flex flex-col gap-1'>
@@ -158,13 +158,13 @@ const CreateCourse = () => {
                             onChange={handleCourseData}
                             value={courseData.description}
                             placeholder='Enter course description...'
-                            className='h-[200px] p-2 w-full bg-gray-200 placeholder:text-[#2a0845] text-white font-semibold text-lg rounded-md'
+                            className='h-[200px] p-2 w-full bg-gray-200 placeholder:text-[#2a0845]  font-semibold text-lg rounded-md text-[#2a0845]'
                         />
                         </div>
                         
                     </div>
                 </div>
-                <button className='w-full bg-[#FFD700] text-[#2a0845] font-semibold text-xl border-2 border-[#2a0845] hover:bg-[#FFD700] transition-all ease-in-out duration-300 rounded-lg hover:text-[#2a0845]' onClick={handleSubmit}>Submit</button>
+                <button className='w-full bg-[#FFD700] text-[#2a0845] font-semibold text-xl border-2 border-[#2a0845] hover:bg-transparent hover:border-2 hover:border-[#ffd700] hover:text-[#ffd700] rounded-lg  transition-all ease-in-out duration-500' onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </HomeLayouts>

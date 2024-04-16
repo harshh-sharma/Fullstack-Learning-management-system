@@ -78,7 +78,7 @@ const AddLecture = () => {
       <div className='bg-[#2a0845] flex justify-center items-center w-full h-screen'>
         <div className='w-auto h-auto flex flex-col shadow-md shadow-[#ffd700] p-4'>
           <header className='text-[#ffd700] text-2xl font-semibold text-center'>
-            <AiOutlineArrowLeft className='relative top-8 ' />
+            <AiOutlineArrowLeft className='relative top-8 cursor-pointer text-white ' onClick={() => navigate(-1)}/>
             <h1 className='mb-5'>Upload Lectue</h1>
             <form onSubmit={onFormSubmit} className='flex flex-col gap-1'>
               <div className='w-fit'>
@@ -102,7 +102,7 @@ const AddLecture = () => {
                   <label htmlFor="lecture" className='text-[#2a0845] text-xl'>Upload lecture</label>
                   <input type="file" name='lecture' id='lecture' className='hidden' onChange={handleLectureVedio} />
                 </div>)}
-              <button type='submit' className='text-[#2a0845] bg-[#FFD700] w-full rounded-md py-1'>Submit</button>
+              <button type='submit' className='text-[#2a0845] bg-[#FFD700] w-full rounded-md '>Submit</button>
             </form>
           </header>
           <div>

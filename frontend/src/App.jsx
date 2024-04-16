@@ -19,6 +19,7 @@ import Checkout from './Pages/Payments/Checkout'
 import Success from './Pages/Payments/Sucess';
 import DisplayLectures from './Pages/Dasboard/DisplayLectures';
 import AddLecture from './Pages/Dasboard/AddLecture';
+import AdminDashboard from './Pages/Dasboard/AdminDashboard';
 
 function App() {
   return (
@@ -30,15 +31,19 @@ function App() {
       <Route path="/courses" element={<CoursePage />} />
       <Route path="/course/description" element={<CourseDescription />} />
       <Route path="/denied" element={<DeniesPage />} />
-      <Route element={<Authentication allowedRoles={["ADMIN","USER"]} />}>
+      <Route element={<Authentication allowedRoles={["ADMIN"]} />}>
         <Route path="/course/create" element={<CreateCourse />} />
+        <Route path="/course/addlecture" element={<AddLecture />} />
+      </Route>
+      <Route element={<Authentication allowedRoles={["ADMIN", "USER"]} />}>
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
         <Route path="/course/lecture" element={<DisplayLectures />} />
-        <Route path="/course/addlecture" element={<AddLecture />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Route>
-      <Route path="/profile" element={<UserProfile />} />
-      <Route path="/profile/edit" element={<EditProfile />} />
+      
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
