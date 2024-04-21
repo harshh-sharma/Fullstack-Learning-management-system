@@ -20,6 +20,7 @@ import Success from './Pages/Payments/Sucess';
 import DisplayLectures from './Pages/Dasboard/DisplayLectures';
 import AddLecture from './Pages/Dasboard/AddLecture';
 import AdminDashboard from './Pages/Dasboard/AdminDashboard';
+import ChangePassword from './Pages/ChangePassword';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/course/lecture" element={<DisplayLectures />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/user/change-password" element={<ChangePassword />} />
       </Route>
       
       <Route path="*" element={<NotFoundPage />} />

@@ -12,6 +12,6 @@ userRouter.get("/profile",isAuthenticated,getUserProfile);
 userRouter.put("/update",isAuthenticated,updateUser);
 userRouter.post("/forgot-password",forgotPassword);
 userRouter.post("/reset/:resetToken",resetPassword);
-userRouter.post("/change-password",isAuthenticated,changePassword);
+userRouter.put("/change-password",isAuthenticated,changePassword);
 
 export default userRouter;

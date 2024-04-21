@@ -16,8 +16,7 @@ export const createAccount = createAsyncThunk("/auth/signup",async(data) => {
         })
         return (await res).data
     } catch (error) {
-        console.log(error);
-        toast.error(error?.res?.message);
+        toast.error(error?.response?.data?.message);
     }
 })
 
@@ -29,13 +28,11 @@ export const login = createAsyncThunk("/auth/login",async(data) => {
             success:(data) => {
                 return data?.data?.message;
             },
-            error:res?.data?.message
+            error:"failed to login"
         })
-        // console.log(await res);
         return (await res).data
     } catch (error) {
-        console.log(error);
-        toast.error(error?.res?.message);
+        toast.error(error?.response?.data?.message);
     }
 })
 
@@ -50,7 +47,7 @@ export const logout = createAsyncThunk("/auth/logout",async() => {
          error:"Failed to logout"
      })
    } catch (error) {
-        toast.error(error?.res?.message);
+    toast.error(error?.response?.data?.message);
    }
 })
 
@@ -67,7 +64,7 @@ export const updateUserProfile = createAsyncThunk("/auth/edit",async(userData) =
         })
         return (await response).data
     } catch (error) {
-        toast.error(response?.data?.message)
+        toast.error(error?.response?.data?.message);
     }
 })
 
@@ -81,7 +78,7 @@ export const getUserProfile = createAsyncThunk("/auth/profile",async() => {
         })
         return (await response).data;
     } catch (error) {
-        toast.error(response?.data?.message)
+        toast.error(error?.response?.data?.message);
     }
 })
 
@@ -99,11 +96,26 @@ export const getSubscription = createAsyncThunk("payment/subcribe",async() =>{
     }
 })
 
+export const changePassword = createAsyncThunk("/auth/change-password",async(data) => {
+    try {
+        const {oldPassword,newPassword} = data;
+        const response = axiosInstance.put("/user/change-password",{oldPassword,newPassword});
+        toast.promise(response,{
+            loading:"wait !! change password in progress",
+            success:"password successfully updated",
+            error:"error failed to update password"
+        })
+        return (await response).data;
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+    }
+})
+
 const authSlice = createSlice({
     name:"auth",
     initialState:{
         isLoggedIn: localStorage.getItem("isLoggedIn") || false,
-        role: localStorage.getItem("role") || "",
+        role: localStorage.getItem("role") == "undefined" ? "" : JSON.parse(localStorage.getItem("role")),
         data: localStorage.getItem("data") == 'undefined' ? {} : JSON.parse(localStorage.getItem("data")),
         subscriptionStatus:localStorage.getItem("status") ||""
         // !== undefined ? JSON.parse(localStorage.getItem("data")) :

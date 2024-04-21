@@ -48,7 +48,6 @@ const Login = () => {
         const {email,password} = loginData;
         if(formValidation(email,password)){
             const response = await dispatch(login(loginData));
-            console.log("res",response);
             if(response?.payload?.success){
                 navigate("/");
                 setLoginData({
